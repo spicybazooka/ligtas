@@ -6,14 +6,14 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
 # --- 1. Configuration ---
-load_dotenv()
-API_KEY = os.getenv("OPENAI_API_KEY")
+load_dotenv()  # load_dotenv() will look for a .env file locally. If it doesn't find one (like on Railway), it just skips it.
+api_key = os.getenv("OPENAI_API_KEY")  # Now get the key from the environment (Railway will provide this)
 
-if not API_KEY:
-    raise RuntimeError("❌ OPENAI_API_KEY not found in .env file.")
+if not api_key:
+    raise RuntimeError("❌ OPENAI_API_KEY not found in environment variables.")
 
 # Initialize the Async client (more efficient for FastAPI than synchronous clients)
-client = AsyncOpenAI(api_key=API_KEY)
+client = AsyncOpenAI(api_key=api_key)
 
 app = FastAPI(title="Ligtas Chatbot API (OpenAI)")
 
