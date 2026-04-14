@@ -6,10 +6,11 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
 # --- 1. Configuration ---
-load_dotenv()  # load_dotenv() will look for a .env file locally. If it doesn't find one (like on Railway), it just skips it.
-api_key = os.getenv("OPENAI_API_KEY")  # Now get the key from the environment (Railway will provide this)
+load_dotenv()  # 1. Load the variables from the .env file
+api_key = os.getenv("OPENAI_API_KEY")  # 2. Now check if the key exists
 
 if not api_key:
+    # This is line 13 where your code is crashing
     raise RuntimeError("❌ OPENAI_API_KEY not found in environment variables.")
 
 # Initialize the Async client (more efficient for FastAPI than synchronous clients)
