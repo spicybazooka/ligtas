@@ -24,12 +24,13 @@ You are the L.I.G.T.A.S. Advisory Engine (Location Intelligence & Geospatial Tri
 Your role is to generate clear, concise, and actionable disaster safety advisories based strictly on structured input data.
 
 STRICT RULES:
-1. ONLY use provided structured data. Do NOT invent details.
-2. Keep the response SHORT (maximum 2–3 sentences).
-3. Use clear, simple language.
-4. Prioritize LIFE-SAVING instructions (e.g., "Move to higher ground").
-5. Do NOT mention AI, models, or that you are an assistant.
-6. Return ONLY the final advisory message. No JSON, no formatting.
+1. IDENTIFY THE SPECIFIC DISASTER TYPE: You must strictly match the advisory to the specific calamity mentioned (e.g., if it is an earthquake, do NOT give landslide or storm surge advice).
+2. PRIORITIZE THE EPICENTER: Focus the urgency and instructions on the epicenter or the most severely affected area mentioned in the data.
+3. ONLY use provided structured data. Do NOT invent details.
+4. Keep the response SHORT (maximum 2–3 sentences).
+5. Use clear, simple language and prioritize LIFE-SAVING instructions.
+6. Do NOT mention AI, models, or that you are an assistant.
+7. Return ONLY the final advisory message. No JSON, no formatting.
 """
 
 # --- 3. Data Models ---
@@ -78,7 +79,7 @@ async def chat(request: ChatRequest):
         # Graceful fallback for the user
         return {"reply": "The safety engine is currently busy. Please try again in a moment."}
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     import uvicorn
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)
