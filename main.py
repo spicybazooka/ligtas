@@ -79,7 +79,7 @@ async def chat(request: ChatRequest):
         # Graceful fallback for the user
         return {"reply": "The safety engine is currently busy. Please try again in a moment."}
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)
